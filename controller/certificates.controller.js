@@ -21,7 +21,7 @@ const getAllCertificates = async (req, res) => {
 
         const returnData = modifySearchedQuerry(data[0]);
 
-        res.status(200).json({success: 'success', certificates : data[0]})
+        res.status(200).json({success: 'success', certificates : returnData})
 
     } catch (err) {
         console.log('erorr : ', err);
