@@ -1,0 +1,16 @@
+CREATE DB practicedb;
+
+
+CREATE TABLE `practicedb`.`certificate` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `issuer` VARCHAR(150) NOT NULL,
+  `overview` VARCHAR(255) NULL,
+  `start_Date` DATE NULL,
+  `duration_month` INT NULL,
+  `status` VARCHAR(45) NOT NULL DEFAULT 'DRAFT',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `if_UNIQUE` (`id` ASC) VISIBLE);
+
+
+INSERT INTO `practicedb`.`certificate` (`id`, `name`, `issuer`, `overview`, `start_Date`, `duration_month`, `status`) VALUES ('1', 'Darshan', 'link.img', 'This is first test document for the DB testing for interview at RockED', '2024-10-15', '6', 'PUBLISHED');

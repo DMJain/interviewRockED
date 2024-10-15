@@ -1,0 +1,19 @@
+API for Admin
+ -  Get All API
+    - Get all certificate // get request | select *
+    - filter : status, start-end date, // ? querry of API status filter || Where
+    - order by : certificate name, number of User, start date // ? querry orderBY || ORDER BY
+    - search : certificate name // ? querry search || Where Like
+    - pagination : paginate // ? querry page || LIMIT OFFSET
+
+ - list of user per certificate : get request // get || JOIN
+ - save certificate : post request // post || INSERT INTO _ VALUES
+ - publis API : put request // put || UPDATE SET
+
+
+API for User
+ - .certificate only active //to get list of certificate for users
+    - filter : date
+    - order : certificate name
+
+ - enroll  //to enroll
