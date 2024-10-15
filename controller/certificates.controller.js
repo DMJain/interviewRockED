@@ -1,7 +1,7 @@
 const db = require('../database/db');
 
 const {createQueryForSearch, createQueryForUpdate} = require('../lib/functions/queryFunctions')
-const {modifySearchedQuerry} = require('../lib/functions/dataModifierFunction');
+const {modifySearchedQuerry, modifyUserSearchData} = require('../lib/functions/dataModifierFunction');
 
 
 //@DESC get All certificates
@@ -12,8 +12,6 @@ const getAllCertificates = async (req, res) => {
     try {
         //search query from MySQL
         const data = await db.query(query)
-
-        console.log(data[0]);
 
         if(data[0].lenght == 0) {
            return res.status(400).json({success: 'success', message: 'no Certificates created', certificates : []})
@@ -75,9 +73,8 @@ const getActiveCertificates = async (req, res) => {
         const status = 'PUBLISHED'
         let nowDate = new Date(); 
         let date = nowDate.getFullYear()+'-'+(nowDate.getMonth()+1)+'-'+nowDate.getDate();
-        const data = await db.query('SELECT * FROM certificate WHERE status = ? && start_Date >= ?', [status, date]);
-        console.log(date[0]);
-        res.status(200).json({success: 'success', certificates : data[0]})
+        const data = await db.query('SELECT * FROM certificate WHERE status = ? && start_Date <= ?', [status, date]);
+        res.status(200).json({success: 'success', certificates : modifyUserSearchData(data[0])})
     }catch (err) {
         console.log('erorr : ', err);
         res.status(500).json({success: 'failure', message : 'server error'})
